@@ -29,7 +29,7 @@ jobs:
           pip install pyinstaller pillow
 
       - name: Build Windows .exe
-        run: pyinstaller --onefile --windowed main.py
+        run: pyinstaller --onefile --windowed SORT_IMAGES/main.py
 
       - name: Upload Windows artifact
         uses: actions/upload-artifact@v4
@@ -54,7 +54,7 @@ jobs:
           pip install pyinstaller pillow
 
       - name: Build macOS .app
-        run: pyinstaller --onefile --windowed main.py
+        run: pyinstaller --onefile --windowed SORT_IMAGES/main.py
 
       - name: Upload macOS artifact
         uses: actions/upload-artifact@v4
