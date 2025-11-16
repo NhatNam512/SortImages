@@ -24,7 +24,7 @@ jobs:
           pip install pyinstaller pillow
 
       # 4. Build file .app
-      - run: pyinstaller --onefile --windowed SORT_IMAGES/main.py
+      - run: pyinstaller --onefile --windowed main.py
 
       # 5. Upload artifact để tải về
       - uses: actions/upload-artifact@v4
