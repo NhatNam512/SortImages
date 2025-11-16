@@ -27,7 +27,7 @@ jobs:
       - run: pyinstaller --onefile --windowed copy_images_advanced.py
 
       # 5. Upload artifact để tải về
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: macos-app
           path: dist/
