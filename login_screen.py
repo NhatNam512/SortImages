@@ -93,14 +93,6 @@ def show_login_screen():
                                    bg_color=LOGIN_LEFT_BG, fg_color=COLORS["white"])
     icon_label.pack(anchor="w", pady=(20, 10))
     
-    app_name_label = Label(login_content, text="Auto Find Photo", 
-                          font=("Arial", 28, "bold"), bg=LOGIN_LEFT_BG, fg=COLORS["white"])
-    app_name_label.pack(anchor="w", pady=(0, 5))
-    
-    software_label = Label(login_content, text="Một sản phẩm của Honle Software", 
-                          font=("Arial", 11), bg=LOGIN_LEFT_BG, fg=COLORS["gray"])
-    software_label.pack(anchor="w", pady=(0, 40))
-    
     # Text "Bạn đã có tài khoản?"
     account_text = Label(login_content, text="Bạn đã có tài khoản? Đăng nhập ngay", 
                         font=("Arial", 12), bg=LOGIN_LEFT_BG, fg=COLORS["white"])
