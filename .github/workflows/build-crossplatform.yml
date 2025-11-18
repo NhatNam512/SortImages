@@ -69,12 +69,39 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install pillow
+
+      - name: Convert icon to ICNS
+        run: |
+          cat > convert_icon.py << 'PYEOF'
+          from PIL import Image
+          import os
+          import subprocess
+          
+          img = Image.open('asset/icon.png')
+          # Create iconset directory
+          os.makedirs('asset/icon.iconset', exist_ok=True)
+          # Generate all required sizes for ICNS
+          sizes = [16, 32, 64, 128, 256, 512, 1024]
+          for size in sizes:
+              resized = img.resize((size, size), Image.Resampling.LANCZOS)
+              # Standard resolution
+              resized.save(f'asset/icon.iconset/icon_{size}x{size}.png')
+              # Retina (2x) resolution
+              if size < 1024:
+                  resized_2x = img.resize((size*2, size*2), Image.Resampling.LANCZOS)
+                  resized_2x.save(f'asset/icon.iconset/icon_{size}x{size}@2x.png')
+          # Convert iconset to icns using iconutil
+          subprocess.run(['iconutil', '-c', 'icns', 'asset/icon.iconset', '-o', 'asset/icon.icns'], check=True)
+          print('Icon converted to ICNS successfully')
+          PYEOF
+          python convert_icon.py
 
       - name: Build macOS .app
         run: |
           pyinstaller --onefile --windowed \
             --name=AutoFindPhoto \
-            --icon=asset/icon.png \
+            --icon=asset/icon.icns \
             --add-data="asset:asset" \
             --hidden-import=requests \
             --hidden-import=urllib3 \
