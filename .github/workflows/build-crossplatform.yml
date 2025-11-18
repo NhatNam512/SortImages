@@ -74,7 +74,7 @@ jobs:
         run: |
           pyinstaller --onefile --windowed \
             --name=AutoFindPhoto \
-            --icon=asset/icon.ico \
+            --icon=asset/icon.png \
             --add-data="asset:asset" \
             --hidden-import=requests \
             --hidden-import=urllib3 \
